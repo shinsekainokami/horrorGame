@@ -10,9 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "phaser": "^3.87.0"
+    "dotenv": "^16.4.7",
+    "openai": "^4.80.0",
+    "phaser": "^3.87.0",
+    "process": "^0.11.10"
   },
   "devDependencies": {
-    "@web/dev-server": "^0.4.1"
+    "@web/dev-server": "^0.4.1",
+    "dotenv-webpack": "^8.1.0"
   }
 }

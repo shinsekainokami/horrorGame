@@ -1,7 +1,22 @@
 export default class WorldScene extends Phaser.Scene {
     constructor() {
       super('WorldScene');
+      const possibleHidingPlaces = [
+        "The big bag of food in the kitchen",
+        "The cuckoo clock at the kitchen",
+        "The dining table in the living room",
+        "The statue at the living room",
+        "The mirror at the bedroom",
+        "The chest at the bedroom"
+      ]
+      this.hidingPlace = this.choose(possibleHidingPlaces)
+      console.log("hiding place",this.hidingPlace)
     }
+
+    choose(choices) {
+        var index = Math.floor(Math.random() * choices.length);
+        return choices[index];
+      }
   
     preload() {
       this.load.image('roguelikeSheet_transparent', 'assets/roguelikeSheet_transparent.png');
@@ -51,6 +66,15 @@ export default class WorldScene extends Phaser.Scene {
   
     startChat(player, npc) {
       console.log("inicia chat")
-      this.scene.start('ChatScene', { npcId: npc.name || 'Unknown NPC' });
+      this.scene.start('ChatScene', { 
+        npcId: 'Fred',
+        npcPrompt: `
+You are Fred, a helpful NPC in a treasure hunt investigation game,
+your objective is to give the user hints about where the treasure is,
+the map is a big mansion with a bedroom, a living room with a statue and a dining table,
+and a kitchen, the hiding place is ${this.hidingPlace}.
+
+You MUST only respond to the player with hints, never confirm to them where the treasure is.`
+    });
     }
   }
